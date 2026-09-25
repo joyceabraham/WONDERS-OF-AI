@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generative Threat Modeling Assistant</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- D3.js for Interactive Network/Canvas Diagrams -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+</head>
+<body>
+  <div class="app-header">
+    <div class="logo-area">
+      <i data-lucide="shield-alert" class="logo-icon"></i>
+      <div>
+        <h1>Generative Threat Modeler</h1>
+        <p>AI-Powered STRIDE Risk Assessment Engine</p>
+      </div>
+    </div>
+    <div class="status-pill" id="system-status">
+      <span class="status-dot"></span> System Ready
+    </div>
+  </div>
+
+  <main class="main-container">
+    <!-- Left Column: Input Architecture Controls -->
+    <section class="panel input-panel">
+      <div class="panel-header">
+        <h2><i data-lucide="cpu"></i> System Architecture</h2>
+      </div>
+      
+      <div class="form-group">
+        <label for="architecture-input">Describe Architecture or Paste Tech Stack:</label>
+        <textarea id="architecture-input" placeholder="E.g., Web App hosted on AWS S3, Node.js API Gateway, PostgreSQL RDS instance, external Auth0 for JWT authentication, and Stripe payment processor..."></textarea>
+      </div>
+
+      <div class="preset-buttons">
+        <button class="btn btn-secondary" onclick="loadPreset('ecommerce')">Load E-Commerce Preset</button>
+        <button class="btn btn-secondary" onclick="loadPreset('fintech')">Load FinTech API Preset</button>
+      </div>
+
+      <button id="analyze-btn" class="btn btn-primary" onclick="runAnalysis()">
+        <i data-lucide="sparkles"></i> Generate Threat Model
+      </button>
+
+      <!-- Risk Metrics Dashboard -->
+      <div id="metrics-card" class="metrics-card hidden">
+        <h3>Risk Assessment Overview</h3>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span class="metric-label">Overall Risk</span>
+            <span class="metric-value" id="risk-level">-</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Confidence</span>
+            <span class="metric-value" id="confidence-score">-</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Total Threats</span>
+            <span class="metric-value" id="threat-count">0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Visualization Canvas & STRIDE Threat List -->
+    <section class="panel visualization-panel">
+      <!-- Architecture Map -->
+      <div class="canvas-container">
+        <div class="canvas-header">
+          <h3><i data-lucide="network"></i> Detected Architecture Map</h3>
+          <span class="canvas-hint">Interactive Drag & Zoom Node Diagram</span>
+        </div>
+        <div id="diagram-canvas"></div>
+      </div>
+
+      <!-- STRIDE Filters & Output List -->
+      <div class="threats-container">
+        <div class="threats-header">
+          <h3><i data-lucide="bug"></i> STRIDE Threat Analysis</h3>
+          <div class="filter-tabs" id="stride-filters">
+            <button class="tab-btn active" onclick="filterThreats('ALL')">All</button>
+            <button class="tab-btn" onclick="filterThreats('Spoofing')">Spoofing</button>
+            <button class="tab-btn" onclick="filterThreats('Tampering')">Tampering</button>
+            <button class="tab-btn" onclick="filterThreats('Repudiation')">Repudiation</button>
+            <button class="tab-btn" onclick="filterThreats('Information Disclosure')">Info Disc</button>
+            <button class="tab-btn" onclick="filterThreats('Denial of Service')">DoS</button>
+            <button class="tab-btn" onclick="filterThreats('Elevation of Privilege')">EoP</button>
+          </div>
+        </div>
+
+        <div id="threat-list" class="threat-list">
+          <div class="empty-state">
+            <i data-lucide="shield-check"></i>
+            <p>Enter an architecture description and click "Generate Threat Model" to run the AI security scanner.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
