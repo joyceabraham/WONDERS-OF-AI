@@ -26,7 +26,7 @@ An AI-powered web platform that converts software architecture descriptions into
 
 ## Tech Stack
 
-* **Frontend:** Vanilla JavaScript,CSS,and HTML
+* **Frontend:** CSS, HTML
 * **Backend:** Node.js / Express
 * **AI Engine:** OPENAI OSS 20b model
 
