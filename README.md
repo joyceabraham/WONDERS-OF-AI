@@ -28,6 +28,6 @@ An AI-powered web platform that converts software architecture descriptions into
 
 * **Frontend:** Vanilla JavaScript,CSS,and HTML
 * **Backend:** Node.js / Express
-* **AI Engine:**OPENAI OSS 20b model
+* **AI Engine:** OPENAI OSS 20b model
 
 ---
